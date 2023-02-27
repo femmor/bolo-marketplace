@@ -13,6 +13,12 @@
   &.active {
     background-color: var(--white);
     color: var(--black);
+
+    .user {
+      .username {
+        color: var(--black);
+      }
+    }
   }
 
   .container {

@@ -1,19 +1,52 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-import { Home } from './pages';
-import { Navbar } from './components';
+import {
+  Add,
+  ForBusiness,
+  Gig,
+  Gigs,
+  Home,
+  Login,
+  Message,
+  Messages,
+  MyGigs,
+  Orders,
+  Register,
+} from './pages';
+import { Footer, Navbar } from './components';
 
 import './App.scss';
 
 const App = () => {
-  return (
-    <Router>
+  const Layout = () => (
+    <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
+      <Outlet />
+      <Footer />
+    </>
   );
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        { path: '/', element: <Home /> },
+        { path: '/for-business', element: <ForBusiness /> },
+        { path: '/add', element: <Add /> },
+        { path: '/gig', element: <Gig /> },
+        { path: '/gigs', element: <Gigs /> },
+        { path: '/my-gigs', element: <MyGigs /> },
+        { path: '/login', element: <Login /> },
+        { path: '/register', element: <Register /> },
+        { path: '/message/:id', element: <Message /> },
+        { path: '/messages', element: <Messages /> },
+        { path: '/orders', element: <Orders /> },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default App;

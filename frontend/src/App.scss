@@ -21,16 +21,13 @@ body {
   padding: 20px 0;
 }
 
-a,
-a:hover,
-a:focus,
-a:active {
+a {
   transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
 
-  &:hover {
+  &:not(.logo):hover {
     color: var(--secondary-color);
   }
 }

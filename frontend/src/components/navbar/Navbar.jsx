@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const { pathname } = useLocation();
 
   const currentUser = {
     id: 1,
@@ -29,31 +31,31 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className={active ? 'navbar active' : 'navbar'}>
+    <header className={active || pathname !== '/' ? 'navbar active' : 'navbar'}>
       <div className="container">
-        <div className="logo">
+        <Link to="/" className="logo">
           <span className="text">bolo</span>
           <span className="dot">.</span>
-        </div>
+        </Link>
         <div className="links">
           <Link to="/for-business">
             <span>Bolo for Business</span>
           </Link>
 
-          <Link to="/explore">
+          <Link to="/#">
             <span>Explore</span>
           </Link>
 
-          <Link to="/english">
+          <Link to="/#">
             <span>English</span>
           </Link>
 
-          <Link to="/sign-in">
+          <Link to="/login">
             <span>Sign In</span>
           </Link>
 
           {!currentUser?.isSeller && (
-            <Link to="/become-a-seller">
+            <Link to="/#">
               <span className="become-a-seller">Become a Seller</span>
             </Link>
           )}
@@ -72,6 +74,7 @@ const Navbar = () => {
                 alt="user-photo"
               />
               <span
+                className="username"
                 onClick={() => {
                   setOpen(!open);
                 }}
@@ -80,15 +83,23 @@ const Navbar = () => {
               </span>
               {open && (
                 <div className="user-menu">
-                  <div className="sub-menu">
+                  <div className="sub-menu" onMouseLeave={() => setOpen(!open)}>
                     {currentUser?.isSeller && (
                       <>
-                        <span>Gigs</span>
-                        <span>Add New Gig</span>
+                        <Link to="/gigs">
+                          <span>Gigs</span>
+                        </Link>
+                        <Link to="/add">
+                          <span>Add New Gig</span>
+                        </Link>
                       </>
                     )}
-                    <span>Orders</span>
-                    <span>Messages</span>
+                    <Link to="/orders">
+                      <span>Orders</span>
+                    </Link>
+                    <Link to="/messages">
+                      <span>Messages</span>
+                    </Link>
                     <Link to="/" onClick={() => console.log('logout')}>
                       <span>Logout</span>
                     </Link>
@@ -100,10 +111,35 @@ const Navbar = () => {
         </div>
       </div>
 
-      {active && <hr />}
-      <div className={active ? 'menu active' : 'menu'}>
-        <span>Test</span>
-        <span>Test</span>
+      {active || (pathname !== '/' && <hr />)}
+      <div className={active || pathname !== '/' ? 'menu active' : 'menu'}>
+        <Link className="menuLink" to="/">
+          Graphics & Design
+        </Link>
+        <Link className="menuLink" to="/">
+          Video & Animation
+        </Link>
+        <Link className="menuLink" to="/">
+          Writing & Translation
+        </Link>
+        <Link className="menuLink" to="/">
+          AI & Data Science
+        </Link>
+        <Link className="menuLink" to="/">
+          Digital Marketing
+        </Link>
+        <Link className="menuLink" to="/">
+          Music & Audio
+        </Link>
+        <Link className="menuLink" to="/">
+          Programming & Tech
+        </Link>
+        <Link className="menuLink" to="/">
+          Business
+        </Link>
+        <Link className="menuLink" to="/">
+          Lifestyle
+        </Link>
       </div>
     </header>
   );
