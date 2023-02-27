@@ -22,6 +22,11 @@
   }
 
   .container {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+
     .logo {
       font-size: 34px;
       font-weight: 600;
