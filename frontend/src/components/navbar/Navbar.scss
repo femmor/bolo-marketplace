@@ -1,0 +1,122 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 20px;
+  color: var(--white);
+  transition: 0.5s all ease;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  &.active {
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+  .container {
+    .logo {
+      font-size: 34px;
+      font-weight: 600;
+      .text {
+      }
+
+      .dot {
+        color: var(--tertiary-color);
+      }
+    }
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-weight: 400;
+      font-size: 14px;
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--white);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+        }
+
+        .avatar {
+          width: 30px;
+          height: 30px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        .user-menu {
+          position: absolute;
+          top: 40px;
+          color: var(--gray);
+          background-color: var(--white);
+          padding: 10px 20px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          width: 200px;
+          font-size: 12px;
+
+          .sub-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+
+          &.active {
+            display: block;
+          }
+        }
+      }
+
+      .join {
+        background-color: transparent;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: var(--white);
+        border: 1px solid #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &.active {
+          color: var(--secondary-color);
+          border: 1px solid var(--secondary-color);
+        }
+
+        &:hover {
+          background-color: var(--secondary-color);
+          color: var(--light);
+        }
+      }
+    }
+  }
+
+  .menu {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px 0;
+    color: #979797;
+    transition: all 0.3s ease;
+    display: none;
+
+    &:hover {
+      color: var(--black);
+    }
+
+    &.active {
+      display: flex;
+      padding: 5px 0;
+    }
+  }
+}
