@@ -1,0 +1,125 @@
+.gigs {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1400px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .breadcrumbs {
+      font-size: 13px;
+      font-weight: 300;
+      color: #555;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 300;
+      color: #555;
+      margin: 0;
+    }
+
+    p {
+      color: #999;
+      font-size: 12px;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #555;
+        font-weight: 300;
+
+        input {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 5px 10px;
+          font-size: 12px;
+          font-weight: 300;
+          color: #555;
+          outline: none;
+
+          &::placeholder {
+            color: #999;
+          }
+        }
+
+        button {
+          border: none;
+          border-radius: 5px;
+          padding: 5px 20px;
+          font-size: 12px;
+          font-weight: 300;
+          color: var(--white);
+          outline: none;
+          background-color: var(--secondary-color);
+          cursor: pointer;
+          transition: 0.3s all ease;
+
+          &:hover {
+            background-color: var(--primary-color);
+          }
+        }
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+
+        .sort-by {
+          font-size: 12px;
+          font-weight: 300;
+          color: #555;
+        }
+
+        .sort-type {
+          font-weight: 500;
+        }
+
+        img {
+          width: 15px;
+          cursor: pointer;
+        }
+
+        .right-menu {
+          padding: 20px;
+          display: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          position: absolute;
+          color: var(--gray);
+          background-color: var(--white);
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          top: 28px;
+          right: 0;
+
+          span {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .gigs-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+  }
+}

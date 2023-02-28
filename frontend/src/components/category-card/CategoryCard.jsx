@@ -6,7 +6,7 @@ const CategoryCard = ({ card }) => {
   const { title, img, desc } = card;
 
   return (
-    <Link to={`/gigs?category=design}`}>
+    <Link to={`/gigs?category=design`}>
       <div className="category-card">
         <img src={img} alt={title} />
         <span className="desc">{desc}</span>

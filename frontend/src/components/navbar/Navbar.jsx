@@ -111,7 +111,13 @@ const Navbar = () => {
         </div>
       </div>
 
-      {active || (pathname !== '/' && <hr />)}
+      <div
+        style={{
+          width: '1400px',
+        }}
+      >
+        {active || (pathname !== '/' && <hr />)}
+      </div>
       <div className={active || pathname !== '/' ? 'menu active' : 'menu'}>
         <Link className="menuLink" to="/">
           Graphics & Design
