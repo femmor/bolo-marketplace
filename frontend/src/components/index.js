@@ -6,3 +6,4 @@ export { default as Business } from './business/Business';
 export { default as TrustedBy } from './trusted-by/TrustedBy';
 export { default as Slide } from './slide/Slide';
 export { default as CategoryCard } from './category-card/CategoryCard';
+export { default as ProjectCard } from './project-card/ProjectCard';

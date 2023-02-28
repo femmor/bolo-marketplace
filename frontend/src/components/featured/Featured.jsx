@@ -30,7 +30,7 @@ const Featured = () => {
         <div className="right">
           <img src="./images/man.png" alt="featured photo" />
           <span className="image-name">
-            Bob. <b>Zur</b>
+            Bob. <b>Web Developer</b>
           </span>
         </div>
       </div>

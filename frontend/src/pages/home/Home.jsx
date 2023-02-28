@@ -5,8 +5,8 @@ import {
   Slide,
   TrustedBy,
 } from '../../components';
-import { cards } from '../../data';
-import { CategoryCard } from '../../components';
+import { cards, projects } from '../../data';
+import { CategoryCard, ProjectCard } from '../../components';
 import './Home.scss';
 
 const Home = () => {
@@ -21,6 +21,11 @@ const Home = () => {
       </Slide>
       <Features />
       <Business />
+      <Slide slidesToShow={4} arrowsScroll={4}>
+        {projects.map(project => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </Slide>
     </div>
   );
 };
