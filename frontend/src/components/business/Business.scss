@@ -1,0 +1,77 @@
+.business {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0;
+  background-color: var(--primary-color);
+
+  .container {
+    width: 1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    color: var(--light-main);
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex: 2;
+
+      h2 {
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: var(--light-main);
+
+        .highlight {
+          color: var(--tertiary-color);
+          font-weight: 300;
+        }
+      }
+
+      .item {
+        .title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 12px;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      .btn {
+        width: 200px;
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: var(--secondary-color);
+        color: var(--white);
+        font-size: 14px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: var(--tertiary-color);
+        }
+      }
+    }
+
+    .right {
+      flex: 3;
+      video {
+        width: 100%;
+      }
+    }
+  }
+}

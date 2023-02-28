@@ -1,4 +1,10 @@
-import { Featured, Features, Slide, TrustedBy } from '../../components';
+import {
+  Business,
+  Featured,
+  Features,
+  Slide,
+  TrustedBy,
+} from '../../components';
 import { cards } from '../../data';
 import { CategoryCard } from '../../components';
 import './Home.scss';
@@ -14,6 +20,7 @@ const Home = () => {
         ))}
       </Slide>
       <Features />
+      <Business />
     </div>
   );
 };
