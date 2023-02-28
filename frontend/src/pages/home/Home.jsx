@@ -14,18 +14,22 @@ const Home = () => {
     <div className="home">
       <Featured />
       <TrustedBy />
-      <Slide slidesToShow={5} arrowsScroll={5}>
-        {cards.map(card => (
-          <CategoryCard key={card.id} card={card} />
-        ))}
-      </Slide>
+      <div className="category-card-section">
+        <Slide slidesToShow={5} arrowsScroll={5}>
+          {cards.map(card => (
+            <CategoryCard key={card.id} card={card} />
+          ))}
+        </Slide>
+      </div>
       <Features />
       <Business />
-      <Slide slidesToShow={4} arrowsScroll={4}>
-        {projects.map(project => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </Slide>
+      <div className="project-card-section">
+        <Slide slidesToShow={4} arrowsScroll={4}>
+          {projects.map(project => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </Slide>
+      </div>
     </div>
   );
 };
