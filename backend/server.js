@@ -4,6 +4,7 @@ import connectDb from './db/connectDb.js';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import authRoute from './routes/authRoute.js';
 import userRoutes from './routes/userRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
@@ -21,6 +22,7 @@ app.use(morgan('dev'));
 app.use(helmet());
 
 // Routes
+app.use('/api/auth', authRoute);
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/orders', orderRoutes);
