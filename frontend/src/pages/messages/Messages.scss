@@ -1,0 +1,67 @@
+.messages {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1400px;
+    padding: 50px 0;
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+
+      thead {
+        background-color: var(--light-gray);
+        height: 50px;
+
+        th {
+          text-align: left;
+          padding: 5px 10px;
+        }
+      }
+
+      tr {
+        &:not(.head-row) {
+          height: 100px;
+        }
+
+        &.active {
+          background-color: var(--light-main);
+        }
+
+        th {
+          text-align: left;
+          padding: 5px 10px;
+        }
+
+        td {
+          padding: 5px 10px;
+
+          button {
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background-color: var(--primary-color);
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

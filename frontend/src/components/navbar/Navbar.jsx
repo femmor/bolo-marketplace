@@ -86,7 +86,7 @@ const Navbar = () => {
                   <div className="sub-menu" onMouseLeave={() => setOpen(!open)}>
                     {currentUser?.isSeller && (
                       <>
-                        <Link to="/gigs">
+                        <Link to="/my-gigs">
                           <span>Gigs</span>
                         </Link>
                         <Link to="/add">
