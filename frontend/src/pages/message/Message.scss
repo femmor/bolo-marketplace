@@ -17,7 +17,7 @@
       flex-direction: column;
       gap: 20px;
       height: 500px;
-      overflow-y: scroll;
+      overflow: scroll;
 
       .item {
         display: flex;

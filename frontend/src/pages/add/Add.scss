@@ -1,0 +1,58 @@
+.add {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1400px;
+    padding: 50px 0;
+
+    h1 {
+      color: gray;
+      font-weight: 300;
+      margin: 30px 0;
+    }
+
+    .sections {
+      display: flex;
+      justify-content: space-between;
+      gap: 100px;
+
+      .left,
+      .right {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: space-between;
+
+        label {
+          color: gray;
+          font-size: 18px;
+        }
+
+        input,
+        select,
+        textarea {
+          padding: 10px;
+          font-family: inherit;
+        }
+
+        button {
+          padding: 10px;
+          font-size: 18px;
+          font-weight: 500;
+          border: none;
+          border-radius: 5px;
+          background-color: var(--secondary-color);
+          transition: all 0.3s ease;
+          color: white;
+          cursor: pointer;
+
+          &:hover {
+            background-color: var(--primary-color);
+          }
+        }
+      }
+    }
+  }
+}

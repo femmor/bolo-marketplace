@@ -8,4 +8,3 @@ export { default as Message } from './message/Message';
 export { default as Messages } from './messages/Messages';
 export { default as MyGigs } from './myGigs/MyGigs';
 export { default as Orders } from './orders/Orders';
-export { default as ForBusiness } from './/for-business/ForBusiness';

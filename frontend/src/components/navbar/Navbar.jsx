@@ -38,7 +38,7 @@ const Navbar = () => {
           <span className="dot">.</span>
         </Link>
         <div className="links">
-          <Link to="/for-business">
+          <Link to="/#">
             <span>Bolo for Business</span>
           </Link>
 
@@ -86,7 +86,7 @@ const Navbar = () => {
                   <div className="sub-menu" onMouseLeave={() => setOpen(!open)}>
                     {currentUser?.isSeller && (
                       <>
-                        <Link to="/my-gigs">
+                        <Link to="/gigs">
                           <span>Gigs</span>
                         </Link>
                         <Link to="/add">

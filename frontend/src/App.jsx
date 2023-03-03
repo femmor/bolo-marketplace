@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
 import {
   Add,
-  ForBusiness,
   Gig,
   Gigs,
   Home,
@@ -32,7 +31,6 @@ const App = () => {
       element: <Layout />,
       children: [
         { path: '/', element: <Home /> },
-        { path: '/for-business', element: <ForBusiness /> },
         { path: '/add', element: <Add /> },
         { path: '/gig/:id', element: <Gig /> },
         { path: '/gigs', element: <Gigs /> },
