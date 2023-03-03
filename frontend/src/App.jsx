@@ -34,7 +34,7 @@ const App = () => {
         { path: '/', element: <Home /> },
         { path: '/for-business', element: <ForBusiness /> },
         { path: '/add', element: <Add /> },
-        { path: '/gig', element: <Gig /> },
+        { path: '/gig/:id', element: <Gig /> },
         { path: '/gigs', element: <Gigs /> },
         { path: '/my-gigs', element: <MyGigs /> },
         { path: '/login', element: <Login /> },
