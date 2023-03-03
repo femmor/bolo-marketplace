@@ -5,6 +5,11 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import userRoutes from './routes/userRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+import gigRoutes from './routes/gigRoutes.js';
+import conversationRoutes from './routes/conversationRoutes.js';
 
 const app = express();
 dotenv.config();
@@ -17,6 +22,11 @@ app.use(helmet());
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/messages', messageRoutes);
+app.use('/api/gigs', gigRoutes);
+app.use('/api/conversations', conversationRoutes);
 
 const PORT = process.env.PORT || 5001;
 
