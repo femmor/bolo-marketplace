@@ -4,6 +4,7 @@ import connectDb from './db/connectDb.js';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 dotenv.config();
@@ -13,6 +14,9 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(helmet());
+
+// Routes
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 5001;
 

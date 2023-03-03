@@ -5,7 +5,9 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "kill": "kill-port 5001",
+    "restart": "concurrently \"npm run kill\" \"npm run start\" "
   },
   "keywords": [],
   "author": "Emmanuel Egomson",
@@ -19,6 +21,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "nodemon": "^2.0.21"
   }
 }
