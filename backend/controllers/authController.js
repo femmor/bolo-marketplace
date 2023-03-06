@@ -1,9 +1,10 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import createError from '../utils/createError.js';
 
 // Register a new user
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 5);
 
@@ -13,14 +14,17 @@ const register = async (req, res) => {
     });
 
     const user = await newUser.save();
-    res.status(200).json(user);
+    res.status(200).json({
+      message: 'User created successfully!',
+      user,
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Server error!' });
+    next(error);
   }
 };
 
 // Login a user
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   const { username, password } = req.body;
 
   try {
@@ -28,13 +32,13 @@ const login = async (req, res) => {
 
     // Check if user exists
     if (!user) {
-      res.status(404).json({ message: 'User not found!' });
+      return next(createError(400, 'User not found!'));
     }
 
     // Compare the password
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
-      res.status(400).json({ message: 'Invalid username or password!' });
+      return next(createError(400, 'Invalid credentials!'));
     } else {
       // Create a token
       const token = jwt.sign(
@@ -52,16 +56,11 @@ const login = async (req, res) => {
         .json(info);
     }
   } catch (error) {
-    res.status(500).json({ message: 'Server error!' });
+    next(error);
   }
 };
 
-// Login a user
-const logout = async (req, res) => {
-  try {
-  } catch (error) {
-    res.status(500).json({ message: 'Server error!' });
-  }
-};
+// Logout a user
+const logout = async (req, res) => {};
 
 export { register, login, logout };

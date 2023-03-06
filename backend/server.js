@@ -5,6 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
+import errorhandler from './middleware/errorHandler.js';
 
 // Routes import
 import authRoute from './routes/authRoute.js';
@@ -33,6 +34,9 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/gigs', gigRoutes);
 app.use('/api/conversations', conversationRoutes);
+
+// errorMiddleware
+app.use(errorhandler);
 
 const PORT = process.env.PORT || 5001;
 

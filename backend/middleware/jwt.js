@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import createError from '../utils/createError.js';
 
 export const verifyToken = async (req, res, next) => {
   // Check if it is the right user
@@ -6,17 +7,18 @@ export const verifyToken = async (req, res, next) => {
 
   // If there is no token
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized!' });
+    return next(createError(401, 'Unauthorized!'));
   }
 
   // If there is a token
   jwt.verify(token, process.env.JWT_SECRET, async (err, payload) => {
     if (err) {
-      return res.status(403).json({ message: 'Token is not valid!' });
+      return next(createError(403, 'Token is not valid!'));
     }
     req.userId = payload.id;
     req.isSeller = payload.isSeller;
-  });
 
-  next();
+    // Add next to move to the next function/middleware
+    next();
+  });
 };
