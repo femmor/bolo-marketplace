@@ -4,6 +4,9 @@ import connectDb from './db/connectDb.js';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
+
+// Routes import
 import authRoute from './routes/authRoute.js';
 import userRoutes from './routes/userRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
@@ -20,6 +23,7 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(helmet());
+app.use(cookieParser());
 
 // Routes
 app.use('/api/auth', authRoute);

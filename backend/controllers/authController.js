@@ -1,5 +1,6 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 // Register a new user
 const register = async (req, res) => {
@@ -35,9 +36,20 @@ const login = async (req, res) => {
     if (!validPassword) {
       res.status(400).json({ message: 'Invalid username or password!' });
     } else {
+      // Create a token
+      const token = jwt.sign(
+        { id: user._id, isSeller: user.isSeller },
+        process.env.JWT_SECRET
+      );
+
       // Hide the password
       const { password, ...info } = user._doc;
-      res.status(200).json(info);
+      res
+        .cookie('accessToken', token, {
+          httpOnly: true,
+        })
+        .status(200)
+        .json(info);
     }
   } catch (error) {
     res.status(500).json({ message: 'Server error!' });
