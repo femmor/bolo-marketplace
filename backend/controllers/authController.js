@@ -61,6 +61,14 @@ const login = async (req, res, next) => {
 };
 
 // Logout a user
-const logout = async (req, res) => {};
+const logout = async (req, res, next) => {
+  res
+    .clearCookie('accessToken', {
+      sameSite: 'none',
+      secure: true,
+    })
+    .status(200)
+    .json({ message: 'User has been logged out!' });
+};
 
 export { register, login, logout };
