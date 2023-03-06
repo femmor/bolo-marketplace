@@ -7,7 +7,7 @@ export const verifyToken = async (req, res, next) => {
 
   // If there is no token
   if (!token) {
-    return next(createError(401, 'Unauthorized!'));
+    return next(createError(401, 'You are not authenticated!'));
   }
 
   // If there is a token

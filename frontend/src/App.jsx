@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-
+import { ToastContainer } from 'react-toastify';
 import {
   Add,
   Gig,
@@ -15,12 +15,14 @@ import {
 import { Footer, Navbar } from './components';
 
 import './App.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const Layout = () => (
     <>
       <Navbar />
       <Outlet />
+      <ToastContainer />
       <Footer />
     </>
   );
