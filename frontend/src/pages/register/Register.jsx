@@ -1,98 +1,191 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import './Register.scss';
 import newRequest from '../../utils/newRequest';
+import { toast } from 'react-toastify';
+import { FcImageFile } from 'react-icons/fc';
+
+import { client } from 'filestack-react';
+
+import './Register.scss';
 
 const Register = () => {
-  const [formData, setFormData] = useState({
+  const [file, setFile] = useState(null);
+  const [user, setUser] = useState({
     username: '',
-    password: '',
     email: '',
+    password: '',
+    img: '',
+    country: '',
+    isSeller: false,
     phone: '',
+    desc: '',
   });
-  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
-  const handleInputChange = e => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
+  const handleSeller = e => {
+    setUser({
+      ...user,
+      isSeller: e.target.checked,
+    });
+  };
+
+  const handleImagePicker = async () => {
+    const imgStackOptions = {
+      accept: 'image/*',
+      maxFiles: 1,
+      fromSources: [
+        'local_file_system',
+        'url',
+        'imagesearch',
+        'facebook',
+        'instagram',
+      ],
+      uploadConfig: {
+        tags: {
+          fileName: file => 'bar' + file.name,
+        },
+      },
+      transformations: {
+        crop: {
+          aspectRatio: 1,
+        },
+      },
+      onUploadDone: file => {
+        setFile(file.filesUploaded[0]);
+        setUser({
+          ...user,
+          img: file.filesUploaded[0].url,
+        });
+      },
+    };
+
+    const imgStack = client.init(
+      import.meta.env.VITE_FILESTACK_API_KEY,
+      imgStackOptions
+    );
+
+    const picker = imgStack.picker(imgStackOptions);
+    picker.open();
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    if (
-      !formData.username ||
-      !formData.password ||
-      !formData.email ||
-      !formData.phone
-    ) {
-      setError('Please fill in all fields');
-      error && toast.error(error);
-      return;
-    }
-
+    // send data to backend
     try {
-      // Send data to backend
-      // if (data.error) {
-      //   setError(data.error);
-      //   error && toast.error(error);
-      //   return;
-      // }
-      // If login success
+      await newRequest.post('/auth/register', user);
+      toast.success('Registered successfully');
+      navigate('/login');
     } catch (err) {
-      console.log(err.response.data);
-      setError(err.response.data);
-      toast.error(error);
+      console.log(err);
     }
   };
 
   return (
     <div className="register">
-      <div className="container">
-        <h1>Register</h1>
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <div className="left">
+          <h1>Create a new account</h1>
+
           <label htmlFor="">Username</label>
           <input
-            type="text"
             name="username"
+            type="text"
             placeholder="Enter Username"
-            value={formData.username}
-            onChange={handleInputChange}
-          />
-
-          <label htmlFor="">Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            value={formData.password}
-            onChange={handleInputChange}
+            value={user.username}
+            onChange={handleChange}
           />
 
           <label htmlFor="">Email</label>
           <input
-            type="text"
             name="email"
+            type="email"
             placeholder="Enter Email Address"
-            value={formData.email}
-            onChange={handleInputChange}
+            value={user.email}
+            onChange={handleChange}
           />
 
-          <label htmlFor="">Phone</label>
+          <label htmlFor="">Password</label>
           <input
+            name="password"
+            type="password"
+            placeholder="Enter Password"
+            value={user.password}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="">Profile Picture</label>
+          <button
+            type="button"
+            className="image-upload-btn"
+            onClick={() => handleImagePicker()}
+          >
+            {file !== null ? (
+              <>
+                <FcImageFile /> {file.filename}
+              </>
+            ) : (
+              'Upload Image'
+            )}
+          </button>
+
+          <label htmlFor="">Country</label>
+          <input
+            name="country"
             type="text"
-            name="phone"
-            placeholder="Enter Phone Number"
-            value={formData.phone}
-            onChange={handleInputChange}
+            placeholder="Enter Country"
+            value={user.country}
+            onChange={handleChange}
           />
           <button type="submit">Register</button>
-        </form>
-      </div>
+        </div>
+
+        <div className="right">
+          <h1>I want to become a seller</h1>
+
+          <div className="toggle">
+            <label htmlFor="">Activate seller account</label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                onChange={handleSeller}
+                checked={user.isSeller}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+
+          <label htmlFor="">Phone Number</label>
+          <input
+            name="phone"
+            type="text"
+            placeholder="+1 234 567 8989"
+            value={user.phone}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="">Description</label>
+          <textarea
+            placeholder="A short description of yourself"
+            name="desc"
+            cols="30"
+            rows="10"
+            value={user.desc}
+            onChange={handleChange}
+          ></textarea>
+        </div>
+      </form>
     </div>
   );
 };
+
 export default Register;

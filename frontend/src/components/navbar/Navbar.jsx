@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import newRequest from '../../utils/newRequest';
 import './Navbar.scss';
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -23,6 +24,7 @@ const Navbar = () => {
     try {
       await newRequest.post('/auth/logout');
       localStorage.removeItem('currentUser');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
