@@ -1,0 +1,57 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+
+  .container {
+    width: 1400px;
+
+    h1 {
+      color: gray;
+      font-weight: 300;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      width: 400px;
+
+      label {
+        color: gray;
+        font-size: 18px;
+        margin-top: 10px;
+      }
+
+      input {
+        padding: 10px;
+        font-family: inherit;
+        margin-bottom: 10px;
+        outline: none;
+        border-radius: 5px;
+        position: relative;
+      }
+
+      button {
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--secondary-color);
+        transition: all 0.3s ease;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--primary-color);
+        }
+      }
+    }
+  }
+}

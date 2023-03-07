@@ -44,7 +44,7 @@ const Login = () => {
     } catch (err) {
       console.log(err.response.data);
       setError(err.response.data);
-      toast.error(error);
+      error && toast.error(error);
     }
   };
 

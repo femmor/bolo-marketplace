@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import newRequest from '../../utils/newRequest';
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -15,6 +16,15 @@ const Navbar = () => {
       setActive(true);
     } else {
       setActive(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post('/auth/logout');
+      localStorage.removeItem('currentUser');
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -46,6 +56,12 @@ const Navbar = () => {
             <span>English</span>
           </Link>
 
+          {!currentUser?.isSeller && (
+            <Link to="/#">
+              <span className="become-a-seller">Become a Seller</span>
+            </Link>
+          )}
+
           {
             // If user is not logged in, show sign in link
             !currentUser && (
@@ -55,15 +71,13 @@ const Navbar = () => {
             )
           }
 
-          {!currentUser?.isSeller && (
-            <Link to="/#">
-              <span className="become-a-seller">Become a Seller</span>
-            </Link>
-          )}
-
           {!currentUser && (
-            <Link to="/join">
-              <button className={active ? 'join active' : 'join'}>Join</button>
+            <Link to="/register">
+              <button
+                className={active || pathname !== '/' ? 'join active' : 'join'}
+              >
+                Join
+              </button>
             </Link>
           )}
 
@@ -102,7 +116,7 @@ const Navbar = () => {
                       <span>Messages</span>
                     </Link>
                     {currentUser && (
-                      <Link to="/" onClick={() => console.log('logout')}>
+                      <Link to="/" onClick={handleLogout}>
                         <span>Logout</span>
                       </Link>
                     )}
