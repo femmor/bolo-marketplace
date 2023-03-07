@@ -8,11 +8,7 @@ const Navbar = () => {
 
   const { pathname } = useLocation();
 
-  const currentUser = {
-    id: 1,
-    username: 'John Doe',
-    isSeller: true,
-  };
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -50,9 +46,14 @@ const Navbar = () => {
             <span>English</span>
           </Link>
 
-          <Link to="/login">
-            <span>Sign In</span>
-          </Link>
+          {
+            // If user is not logged in, show sign in link
+            !currentUser && (
+              <Link to="/login">
+                <span>Sign In</span>
+              </Link>
+            )
+          }
 
           {!currentUser?.isSeller && (
             <Link to="/#">
@@ -70,7 +71,7 @@ const Navbar = () => {
             <div className="user">
               <img
                 className="avatar"
-                src="https://randomuser.me/api/portraits/men/50.jpg"
+                src={currentUser?.img || '/images/no-image.jpeg'}
                 alt="user-photo"
               />
               <span
@@ -100,9 +101,11 @@ const Navbar = () => {
                     <Link to="/messages">
                       <span>Messages</span>
                     </Link>
-                    <Link to="/" onClick={() => console.log('logout')}>
-                      <span>Logout</span>
-                    </Link>
+                    {currentUser && (
+                      <Link to="/" onClick={() => console.log('logout')}>
+                        <span>Logout</span>
+                      </Link>
+                    )}
                   </div>
                 </div>
               )}
